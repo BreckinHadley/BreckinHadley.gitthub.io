@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Breckin Hadley - About</title>
+<title>Breckin Hadley - Analysis of the original Star Wars Trilogy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -93,7 +93,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./Mini_Project1.html"> 
+    <a class="nav-link active" href="./Mini_Project1.html" aria-current="page"> 
 <span class="menu-text">Analysis of the original Star Wars Trilogy</span></a>
   </li>  
   <li class="nav-item">
@@ -101,7 +101,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Mapping</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./about.html" aria-current="page"> 
+    <a class="nav-link" href="./about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -121,7 +121,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">About</h1>
+<h1 class="title">Analysis of the original Star Wars Trilogy</h1>
 </div>
 
 
@@ -138,9 +138,637 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>About Me:</p>
-<p>I am originally from Bainbridge Island, Washington, and I am currently pursuing a double major in Statistics/Data Science and Quantitative Economics at St.&nbsp;Olaf College in Northfield, Minnesota. In addition to my academic work, I am also a 4 year student-athlete on the St.&nbsp;Olaf baseball team.</p>
-<p>I am interested in applying quantitative methods to real-world decision-making, particularly within government analytics and the sports industry. I bring strong analytical skills, a disciplined work ethic, and experience balancing rigorous academic and athletic commitments. I am motivated by opportunities that allow me to leverage data to drive insight, strategy, and performance.</p>
+<p><strong>Overview:</strong></p>
+<p>This mini project uses text analysis and sentiment scoring to analyze the scripts of the original Star Wars trilogy (Episodes 4–6). By breaking up the dialogue and analyzing it using differnt sentiments (Bing, NRC, and AFINN), we can see the different trends in how emotions, word choice, and character dialogue changes throughout the original trilogy.</p>
+<p>The project focuses on several questions: What words in the movies wave the highest positive or negative connotation? How are specific emotions, like fear and trust, expressed throughout the trilogy? Which characters have the most lines, and what words do they use the most? How does the emotional tone change throughout each movie, and how do the three movies compare to each other?</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   4.0.0     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors
+Loading required package: RColorBrewer
+
+Loading required package: viridisLite</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 2523 Columns: 2
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (2): name, line
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 25,937 × 3
+   name     movie    word   
+   &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;  
+ 1 THREEPIO new_hope did    
+ 2 THREEPIO new_hope you    
+ 3 THREEPIO new_hope hear   
+ 4 THREEPIO new_hope that   
+ 5 THREEPIO new_hope they've
+ 6 THREEPIO new_hope shut   
+ 7 THREEPIO new_hope down   
+ 8 THREEPIO new_hope the    
+ 9 THREEPIO new_hope main   
+10 THREEPIO new_hope reactor
+# ℹ 25,927 more rows</code></pre>
+</div>
+</div>
+<p><strong>Negative and Positive Sentiment Scores (Eps. 4-6):</strong></p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Joining with `by = join_by(word)`</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Mini_Project1_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>For this plot I want to know the top 10 most frequent positive words and top 10 most frequent negative words used in Star Wars Episodes 4-6. This code above produces a faceted bar chart to illustrate the results.</p>
+<p><strong>Fear and Trust Sentiment Scores (Eps. 4-6):</strong></p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Joining with `by = join_by(word)`</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in inner_join(SW_tidy, nrc_sentiments): Detected an unexpected many-to-many relationship between `x` and `y`.
+ℹ Row 13 of `x` matches multiple rows in `y`.
+ℹ Row 7863 of `y` matches multiple rows in `x`.
+ℹ If a many-to-many relationship is expected, set `relationship =
+  "many-to-many"` to silence this warning.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Mini_Project1_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Insights:</strong> This plot produces similar results as the plot above but looks at the top 10 most frequent trusting words and top 10 most frequent fearful words used in Star Wars Episodes 4-6. This code also uses a faceted bar chart to showcase the results.</p>
+<p><strong>Word Lengths in Star Wars Dialogue:</strong></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Mini_Project1_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Insights:</strong> This plot shows how the word length compares to the sentiment while also showing what letter the word starts with. It seems that words that start with f,g,h, and i tend to have a more positive connotation while words starting with s,t,u,v have a more negative connotation.</p>
+<p><strong>Top 10 Characters by Number of Lines in the Original Star Wars Trilogy:</strong></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Mini_Project1_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Insights:</strong> I wanted to compare the number of lines differnt characters had in Star Wars episodes 4-6. I decided to pick the top 10 characters with the most lines and display them on a horizonatal histogram.</p>
+<p>This plot is a horizontal bar chart titled “Top 10 Characters by Number of Lines in the Original Star Wars Trilogy.” On the x-axis is the lists characters making the top 10, and on the y-axis we have the number of lines that character speaks through out the trilogy. The horizontal bars are colored green (like Lukes Lightsaber) and the characters are ordered from most lines at the top to least lines at the bottom. The character with the most lines in the trilogy is Luke and the character with the tenth most lines is Biggs.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="tmixxfslyg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#tmixxfslyg table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#tmixxfslyg thead, #tmixxfslyg tbody, #tmixxfslyg tfoot, #tmixxfslyg tr, #tmixxfslyg td, #tmixxfslyg th {
+  border-style: none;
+}
+
+#tmixxfslyg p {
+  margin: 0;
+  padding: 0;
+}
+
+#tmixxfslyg .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#tmixxfslyg .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#tmixxfslyg .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#tmixxfslyg .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#tmixxfslyg .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#tmixxfslyg .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#tmixxfslyg .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#tmixxfslyg .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#tmixxfslyg .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#tmixxfslyg .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#tmixxfslyg .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#tmixxfslyg .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#tmixxfslyg .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#tmixxfslyg .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#tmixxfslyg .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#tmixxfslyg .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#tmixxfslyg .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#tmixxfslyg .gt_row {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#tmixxfslyg .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#tmixxfslyg .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#tmixxfslyg .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#tmixxfslyg .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#tmixxfslyg .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#tmixxfslyg .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#tmixxfslyg .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#tmixxfslyg .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#tmixxfslyg .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#tmixxfslyg .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#tmixxfslyg .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#tmixxfslyg .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#tmixxfslyg .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#tmixxfslyg .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#tmixxfslyg .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#tmixxfslyg .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#tmixxfslyg .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#tmixxfslyg .gt_left {
+  text-align: left;
+}
+
+#tmixxfslyg .gt_center {
+  text-align: center;
+}
+
+#tmixxfslyg .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#tmixxfslyg .gt_font_normal {
+  font-weight: normal;
+}
+
+#tmixxfslyg .gt_font_bold {
+  font-weight: bold;
+}
+
+#tmixxfslyg .gt_font_italic {
+  font-style: italic;
+}
+
+#tmixxfslyg .gt_super {
+  font-size: 65%;
+}
+
+#tmixxfslyg .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#tmixxfslyg .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#tmixxfslyg .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#tmixxfslyg .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#tmixxfslyg .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#tmixxfslyg .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#tmixxfslyg .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#tmixxfslyg .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#tmixxfslyg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_heading">
+<th colspan="2" class="gt_heading gt_title gt_font_normal">Top 10 Most Frequent Non-Stop Words</th>
+</tr>
+<tr class="odd gt_heading">
+<th colspan="2" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Star Wars Dialogue Analysis</th>
+</tr>
+<tr class="header gt_col_headings">
+<th id="word" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Word</th>
+<th id="total_count" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Count</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="word">luke</td>
+<td class="gt_row gt_right" headers="total_count">132</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="word">sir</td>
+<td class="gt_row gt_right" headers="total_count">91</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="word">artoo</td>
+<td class="gt_row gt_right" headers="total_count">84</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="word">chewie</td>
+<td class="gt_row gt_right" headers="total_count">65</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="word">ship</td>
+<td class="gt_row gt_right" headers="total_count">57</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="word">time</td>
+<td class="gt_row gt_right" headers="total_count">56</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="word">master</td>
+<td class="gt_row gt_right" headers="total_count">52</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="word">father</td>
+<td class="gt_row gt_right" headers="total_count">51</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="word">vader</td>
+<td class="gt_row gt_right" headers="total_count">51</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="word">force</td>
+<td class="gt_row gt_right" headers="total_count">50</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p><strong>Insights:</strong> For this code I wanted to find which word was said the most by each character. I had to account for stop_word (the,and,I,me, etc) but this were easily filtered out using anti_join.</p>
+<p><strong>Theme throughtout the Trilogy</strong></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Mini_Project1_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Insights:</strong> This plot was one of my favorites to make. This is a sentiment trajectory plot for each Star Wars movie which basically shows the emotional trajectory for each of the films. All of the films seem to be relatively similar to one another with one not being dratically differnt from the others.</p>
 
 
 
