@@ -10,10 +10,9 @@ website:
        text: Home
      - Mini_Project1.qmd
      - Mapping.qmd
-     - about.qmd
 
 format:
   html:
-    theme: cosmo
+    theme: lex
     css: styles.css
 

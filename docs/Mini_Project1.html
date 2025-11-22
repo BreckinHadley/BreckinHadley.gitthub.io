@@ -100,10 +100,6 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="./Mapping.html"> 
 <span class="menu-text">Mapping</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
-<span class="menu-text">About</span></a>
-  </li>  
 </ul>
           </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools">
@@ -122,6 +118,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Analysis of the original Star Wars Trilogy</h1>
+<p class="subtitle lead">Data Overview</p>
 </div>
 
 
@@ -138,60 +135,10 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><strong>Overview:</strong></p>
 <p>This mini project uses text analysis and sentiment scoring to analyze the scripts of the original Star Wars trilogy (Episodes 4–6). By breaking up the dialogue and analyzing it using differnt sentiments (Bing, NRC, and AFINN), we can see the different trends in how emotions, word choice, and character dialogue changes throughout the original trilogy.</p>
 <p>The project focuses on several questions: What words in the movies wave the highest positive or negative connotation? How are specific emotions, like fear and trust, expressed throughout the trilogy? Which characters have the most lines, and what words do they use the most? How does the emotional tone change throughout each movie, and how do the three movies compare to each other?</p>
-<div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.5
-✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ ggplot2   4.0.0     ✔ tibble    3.2.1
-✔ lubridate 1.9.3     ✔ tidyr     1.3.1
-✔ purrr     1.0.2     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors
-Loading required package: RColorBrewer
-
-Loading required package: viridisLite</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 2523 Columns: 2
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr (2): name, line
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 25,937 × 3
-   name     movie    word   
-   &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;  
- 1 THREEPIO new_hope did    
- 2 THREEPIO new_hope you    
- 3 THREEPIO new_hope hear   
- 4 THREEPIO new_hope that   
- 5 THREEPIO new_hope they've
- 6 THREEPIO new_hope shut   
- 7 THREEPIO new_hope down   
- 8 THREEPIO new_hope the    
- 9 THREEPIO new_hope main   
-10 THREEPIO new_hope reactor
-# ℹ 25,927 more rows</code></pre>
-</div>
-</div>
 <p><strong>Negative and Positive Sentiment Scores (Eps. 4-6):</strong></p>
 <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>Joining with `by = join_by(word)`</code></pre>
-</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -200,19 +147,9 @@ chr (2): name, line
 </div>
 </div>
 </div>
-<p>For this plot I want to know the top 10 most frequent positive words and top 10 most frequent negative words used in Star Wars Episodes 4-6. This code above produces a faceted bar chart to illustrate the results.</p>
+<p>For this plot I want to know the top 10 most frequent positive words and top 10 most frequent negative words used in Star Wars Episodes 4-6.</p>
 <p><strong>Fear and Trust Sentiment Scores (Eps. 4-6):</strong></p>
 <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>Joining with `by = join_by(word)`</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in inner_join(SW_tidy, nrc_sentiments): Detected an unexpected many-to-many relationship between `x` and `y`.
-ℹ Row 13 of `x` matches multiple rows in `y`.
-ℹ Row 7863 of `y` matches multiple rows in `x`.
-ℹ If a many-to-many relationship is expected, set `relationship =
-  "many-to-many"` to silence this warning.</code></pre>
-</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -221,7 +158,7 @@ chr (2): name, line
 </div>
 </div>
 </div>
-<p><strong>Insights:</strong> This plot produces similar results as the plot above but looks at the top 10 most frequent trusting words and top 10 most frequent fearful words used in Star Wars Episodes 4-6. This code also uses a faceted bar chart to showcase the results.</p>
+<p><strong>Insights:</strong> This plot produces similar results as the plot above but looks at the top 10 most frequent trusting words and top 10 most frequent fearful words used in Star Wars Episodes 4-6.</p>
 <p><strong>Word Lengths in Star Wars Dialogue:</strong></p>
 <div class="cell">
 <div class="cell-output-display">
@@ -247,23 +184,23 @@ chr (2): name, line
 <p>This plot is a horizontal bar chart titled “Top 10 Characters by Number of Lines in the Original Star Wars Trilogy.” On the x-axis is the lists characters making the top 10, and on the y-axis we have the number of lines that character speaks through out the trilogy. The horizontal bars are colored green (like Lukes Lightsaber) and the characters are ordered from most lines at the top to least lines at the bottom. The character with the most lines in the trilogy is Luke and the character with the tenth most lines is Biggs.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="tmixxfslyg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#tmixxfslyg table {
+<div id="xbchceobhh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#xbchceobhh table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#tmixxfslyg thead, #tmixxfslyg tbody, #tmixxfslyg tfoot, #tmixxfslyg tr, #tmixxfslyg td, #tmixxfslyg th {
+#xbchceobhh thead, #xbchceobhh tbody, #xbchceobhh tfoot, #xbchceobhh tr, #xbchceobhh td, #xbchceobhh th {
   border-style: none;
 }
 
-#tmixxfslyg p {
+#xbchceobhh p {
   margin: 0;
   padding: 0;
 }
 
-#tmixxfslyg .gt_table {
+#xbchceobhh .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -289,12 +226,12 @@ chr (2): name, line
   border-left-color: #D3D3D3;
 }
 
-#tmixxfslyg .gt_caption {
+#xbchceobhh .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#tmixxfslyg .gt_title {
+#xbchceobhh .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -306,7 +243,7 @@ chr (2): name, line
   border-bottom-width: 0;
 }
 
-#tmixxfslyg .gt_subtitle {
+#xbchceobhh .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -318,7 +255,7 @@ chr (2): name, line
   border-top-width: 0;
 }
 
-#tmixxfslyg .gt_heading {
+#xbchceobhh .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -330,13 +267,13 @@ chr (2): name, line
   border-right-color: #D3D3D3;
 }
 
-#tmixxfslyg .gt_bottom_border {
+#xbchceobhh .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#tmixxfslyg .gt_col_headings {
+#xbchceobhh .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -351,7 +288,7 @@ chr (2): name, line
   border-right-color: #D3D3D3;
 }
 
-#tmixxfslyg .gt_col_heading {
+#xbchceobhh .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -371,7 +308,7 @@ chr (2): name, line
   overflow-x: hidden;
 }
 
-#tmixxfslyg .gt_column_spanner_outer {
+#xbchceobhh .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -383,15 +320,15 @@ chr (2): name, line
   padding-right: 4px;
 }
 
-#tmixxfslyg .gt_column_spanner_outer:first-child {
+#xbchceobhh .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#tmixxfslyg .gt_column_spanner_outer:last-child {
+#xbchceobhh .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#tmixxfslyg .gt_column_spanner {
+#xbchceobhh .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -403,11 +340,11 @@ chr (2): name, line
   width: 100%;
 }
 
-#tmixxfslyg .gt_spanner_row {
+#xbchceobhh .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#tmixxfslyg .gt_group_heading {
+#xbchceobhh .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -433,7 +370,7 @@ chr (2): name, line
   text-align: left;
 }
 
-#tmixxfslyg .gt_empty_group_heading {
+#xbchceobhh .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -448,15 +385,15 @@ chr (2): name, line
   vertical-align: middle;
 }
 
-#tmixxfslyg .gt_from_md > :first-child {
+#xbchceobhh .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#tmixxfslyg .gt_from_md > :last-child {
+#xbchceobhh .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#tmixxfslyg .gt_row {
+#xbchceobhh .gt_row {
   padding-top: 5px;
   padding-bottom: 5px;
   padding-left: 5px;
@@ -475,7 +412,7 @@ chr (2): name, line
   overflow-x: hidden;
 }
 
-#tmixxfslyg .gt_stub {
+#xbchceobhh .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -488,7 +425,7 @@ chr (2): name, line
   padding-right: 5px;
 }
 
-#tmixxfslyg .gt_stub_row_group {
+#xbchceobhh .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -502,15 +439,15 @@ chr (2): name, line
   vertical-align: top;
 }
 
-#tmixxfslyg .gt_row_group_first td {
+#xbchceobhh .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#tmixxfslyg .gt_row_group_first th {
+#xbchceobhh .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#tmixxfslyg .gt_summary_row {
+#xbchceobhh .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -520,16 +457,16 @@ chr (2): name, line
   padding-right: 5px;
 }
 
-#tmixxfslyg .gt_first_summary_row {
+#xbchceobhh .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#tmixxfslyg .gt_first_summary_row.thick {
+#xbchceobhh .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#tmixxfslyg .gt_last_summary_row {
+#xbchceobhh .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -539,7 +476,7 @@ chr (2): name, line
   border-bottom-color: #D3D3D3;
 }
 
-#tmixxfslyg .gt_grand_summary_row {
+#xbchceobhh .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -549,7 +486,7 @@ chr (2): name, line
   padding-right: 5px;
 }
 
-#tmixxfslyg .gt_first_grand_summary_row {
+#xbchceobhh .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -559,7 +496,7 @@ chr (2): name, line
   border-top-color: #D3D3D3;
 }
 
-#tmixxfslyg .gt_last_grand_summary_row_top {
+#xbchceobhh .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -569,11 +506,11 @@ chr (2): name, line
   border-bottom-color: #D3D3D3;
 }
 
-#tmixxfslyg .gt_striped {
+#xbchceobhh .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#tmixxfslyg .gt_table_body {
+#xbchceobhh .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -582,7 +519,7 @@ chr (2): name, line
   border-bottom-color: #D3D3D3;
 }
 
-#tmixxfslyg .gt_footnotes {
+#xbchceobhh .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -596,7 +533,7 @@ chr (2): name, line
   border-right-color: #D3D3D3;
 }
 
-#tmixxfslyg .gt_footnote {
+#xbchceobhh .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -605,7 +542,7 @@ chr (2): name, line
   padding-right: 5px;
 }
 
-#tmixxfslyg .gt_sourcenotes {
+#xbchceobhh .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -619,7 +556,7 @@ chr (2): name, line
   border-right-color: #D3D3D3;
 }
 
-#tmixxfslyg .gt_sourcenote {
+#xbchceobhh .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -627,72 +564,72 @@ chr (2): name, line
   padding-right: 5px;
 }
 
-#tmixxfslyg .gt_left {
+#xbchceobhh .gt_left {
   text-align: left;
 }
 
-#tmixxfslyg .gt_center {
+#xbchceobhh .gt_center {
   text-align: center;
 }
 
-#tmixxfslyg .gt_right {
+#xbchceobhh .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#tmixxfslyg .gt_font_normal {
+#xbchceobhh .gt_font_normal {
   font-weight: normal;
 }
 
-#tmixxfslyg .gt_font_bold {
+#xbchceobhh .gt_font_bold {
   font-weight: bold;
 }
 
-#tmixxfslyg .gt_font_italic {
+#xbchceobhh .gt_font_italic {
   font-style: italic;
 }
 
-#tmixxfslyg .gt_super {
+#xbchceobhh .gt_super {
   font-size: 65%;
 }
 
-#tmixxfslyg .gt_footnote_marks {
+#xbchceobhh .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#tmixxfslyg .gt_asterisk {
+#xbchceobhh .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#tmixxfslyg .gt_indent_1 {
+#xbchceobhh .gt_indent_1 {
   text-indent: 5px;
 }
 
-#tmixxfslyg .gt_indent_2 {
+#xbchceobhh .gt_indent_2 {
   text-indent: 10px;
 }
 
-#tmixxfslyg .gt_indent_3 {
+#xbchceobhh .gt_indent_3 {
   text-indent: 15px;
 }
 
-#tmixxfslyg .gt_indent_4 {
+#xbchceobhh .gt_indent_4 {
   text-indent: 20px;
 }
 
-#tmixxfslyg .gt_indent_5 {
+#xbchceobhh .gt_indent_5 {
   text-indent: 25px;
 }
 
-#tmixxfslyg .katex-display {
+#xbchceobhh .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#tmixxfslyg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#xbchceobhh div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>

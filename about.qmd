@@ -1,9 +1,0 @@
----
-title: "About"
----
-
-About Me:
-
-I am originally from Bainbridge Island, Washington, and I am currently pursuing a double major in Statistics/Data Science and Quantitative Economics at St. Olaf College in Northfield, Minnesota. In addition to my academic work, I am also a 4 year student-athlete on the St. Olaf baseball team.
-
-I am interested in applying quantitative methods to real-world decision-making, particularly within government analytics and the sports industry. I bring strong analytical skills, a disciplined work ethic, and experience balancing rigorous academic and athletic commitments. I am motivated by opportunities that allow me to leverage data to drive insight, strategy, and performance.

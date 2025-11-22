@@ -2,13 +2,15 @@
 title: "Analysis of the original Star Wars Trilogy"
 ---
 
-**Overview:**
+---
+subtitle: "Data Overview"
+---
 
 This mini project uses text analysis and sentiment scoring to analyze the scripts of the original Star Wars trilogy (Episodes 4–6). By breaking up the dialogue and analyzing it using differnt sentiments (Bing, NRC, and AFINN), we can see the different trends in how emotions, word choice, and character dialogue changes throughout the original trilogy.
 
 The project focuses on several questions: What words in the movies wave the highest positive or negative connotation? How are specific emotions, like fear and trust, expressed throughout the trilogy? Which characters have the most lines, and what words do they use the most? How does the emotional tone change throughout each movie, and how do the three movies compare to each other?
 
-```{r}
+```{r, message=FALSE}
 #| echo: false
 #| results: false
 
@@ -32,13 +34,13 @@ nrc_sentiments <- get_sentiments(lexicon = "nrc")
 afinn_sentiments <- get_sentiments(lexicon = "afinn")
 ```
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, message=FALSE}
 #Readin Star Wars data
 library(readr)
 SW <- read_csv("SW_Episode4-6.csv")
 ```
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, message=FALSE}
 #Tidy Data and adding the movie column
 SW_tidy <- SW |>
   mutate(movie = case_when(
@@ -47,12 +49,10 @@ SW_tidy <- SW |>
     row_number() >= 1895 ~ "return_jedi"
   )) |>
   unnest_tokens(output = word, input = line)
-
-SW_tidy
 ```
 
 **Negative and Positive Sentiment Scores (Eps. 4-6):**
-```{r, echo=FALSE}
+```{r, echo=FALSE, message=FALSE, warning = FALSE}
 SW_tidy|>
   inner_join(bing_sentiments) |>
   count(sentiment, word, sort = TRUE) |>
@@ -67,10 +67,10 @@ SW_tidy|>
 
 ```
 
-For this plot I want to know the top 10 most frequent positive words and top 10 most frequent negative words used in Star Wars Episodes 4-6. This code above produces a faceted bar chart to illustrate the results.
+For this plot I want to know the top 10 most frequent positive words and top 10 most frequent negative words used in Star Wars Episodes 4-6.
 
 **Fear and Trust Sentiment Scores (Eps. 4-6):**
-```{r, echo = FALSE}
+```{r, echo = FALSE, message=FALSE, warning = FALSE}
 SW_tidy |>
   inner_join(nrc_sentiments) |>
   filter(sentiment %in% c("fear", "trust"))|>
@@ -86,11 +86,11 @@ SW_tidy |>
 ```
 
 **Insights:**
-This plot produces similar results as the plot above but looks at the top 10 most frequent trusting words and top 10 most frequent fearful words used in Star Wars Episodes 4-6. This code also uses a faceted bar chart to showcase the results.
+This plot produces similar results as the plot above but looks at the top 10 most frequent trusting words and top 10 most frequent fearful words used in Star Wars Episodes 4-6. 
 
 
 **Word Lengths in Star Wars Dialogue:**
-```{r, echo=FALSE}
+```{r, echo=FALSE, message=FALSE, warning = FALSE}
 SW_tidy |>
   inner_join(bing_sentiments, by = "word") %>%
   mutate(
@@ -116,7 +116,7 @@ This plot shows how the word length compares to the sentiment while also showing
 
 
 **Top 10 Characters by Number of Lines in the Original Star Wars Trilogy:**
-```{r, echo=FALSE}
+```{r, echo=FALSE, message=FALSE, warning = FALSE}
 #Who Says the Most lines
 SW_tidy |>
   
@@ -141,7 +141,7 @@ I wanted to compare the number of lines differnt characters had in Star Wars epi
 This plot is a horizontal bar chart titled “Top 10 Characters by Number of Lines in the Original Star Wars Trilogy.” On the x-axis is the lists characters making the top 10, and on the y-axis we have the number of lines that character speaks through out the trilogy. The horizontal bars are colored green (like Lukes Lightsaber) and the characters are ordered from most lines at the top to least lines at the bottom. The character with the most lines in the trilogy is Luke and the character with the tenth most lines is Biggs.
 
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, message=FALSE}
 library(gt)
 library(dplyr)
 
@@ -174,7 +174,7 @@ For this code I wanted to find which word was said the most by each character. I
 
 
 **Theme throughtout the Trilogy**
-```{r, echo=FALSE}
+```{r, echo=FALSE, message=FALSE}
 SW_tidy |>
   inner_join(bing_sentiments, by = "word") |>
   count(movie, index = row_number() %/% 5, sentiment) |>
