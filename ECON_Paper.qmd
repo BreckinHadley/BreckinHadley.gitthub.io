@@ -1,0 +1,21 @@
+---
+title: "The Longevity–Labor Connection"
+resources:
+  - "The_Longevity_Labor_Connection.pdf"
+---
+
+---
+subtitle: "Abstract"
+---
+
+This paper examines whether county-level life expectancy predicts the labor force participation rate and the employment rate among older adults in the United States. The data comes from IPUMS USA and the Global Health Data Exchange from 2009–2019. I  estimate four separate fixed-effects regression models for individuals aged 55–65 and 66–74, while controlling for various demographic and economic characteristics. Ultimately, the results find that life expectancy is negatively  associated with both employment rate and labor force participation among individuals aged 66-74. However, there was no statistically significant relationship for those aged 55–65, suggesting that health plays a limited role in determining labor supply before traditional retirement ages. These findings indicate that greater longevity does not necessarily correspond to extended labor force participation or employment. Instead, higher life expectancy appears to be associated with longer periods spent in retirement, with potential implications for the fiscal sustainability of Social Security and related public programs.
+
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| out-width: "100%"
+knitr::include_url("The_Longevity_Labor_Connection.pdf", height = "1000px")
+
+```

@@ -1,0 +1,111 @@
+---
+title: "NFL Team Metrics Dashboard"
+---
+
+---
+subtitle: "About"
+---
+```{r global, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(stringr)
+library(rvest)
+library(polite)
+library(sf)
+library(maps)
+library(viridis)
+library(leaflet)
+library(htmltools)
+library(janitor)
+library(purrr)
+library(ggrepel)
+library(shiny)
+```
+
+
+```{r, echo = FALSE}
+# Loads in dataset
+full_table <- read.csv("mydata.csv")
+# converts variables to numeric and creates derived variables
+full_table <- full_table |>
+  mutate(
+    indendend_air_yard = as.numeric(indendend_air_yard),
+    pass_attempts = as.numeric(pass_attempts),
+    rush_attempts = as.numeric(rush_attempts),
+    points_scored = as.numeric(points_scored)
+  ) |>
+  mutate(
+    air_yards_per_pa = indendend_air_yard / pass_attempts,
+    points_per_pa = points_scored / pass_attempts,
+    points_per_ra = points_scored / rush_attempts,
+    wins   = as.numeric(str_extract(record, "^[0-9]+")),
+    losses = as.numeric(str_extract(record, "(?<=-)[0-9]+")),
+    win_percentage = wins / (wins + losses),
+    wins_per_pa = wins / pass_attempts,
+    wins_per_ra = wins / rush_attempts,
+    rush_percentage = rush_attempts / (rush_attempts + pass_attempts),
+    pass_percentage = pass_attempts / (rush_attempts + pass_attempts)
+  )
+# creates a vector to use for dropdown labels and data columns
+metrics <- c(
+  "Pass Attempts" = "pass_attempts",
+  "Rush Attempts" = "rush_attempts",
+  "On Target Percentage" = "on_target",
+  "Rushing Yards Before Contact per Attempt" = "rush_before_contact",
+  "Points Scored" = "points_scored",
+  "Intended Air Yards per Pass Attempt" = "air_yards_per_pa",
+  "Points Scored per Pass Attempt" = "points_per_pa",
+  "Points Scored per Rush Attempt" = "points_per_ra",
+  "Wins" = "wins",
+  "Losses" = "losses",
+  "Winning Percentage" = "win_percentage",
+  "Wins per Pass Attempt" = "wins_per_pa",
+  "Wins per Rush Attempt" = "wins_per_ra",
+  "% of Plays Rushing" = "rush_percentage",
+  "% of Plays Passing" = "pass_percentage"
+)
+```
+
+### Overview
+
+**What this dashboard does:**  
+This interactive dashboard examines how offensive play style relates to team success in the National Football League (NFL). Using five seasons of team-level data, we analyze how passing and rushing tendencies are associated with points scored and wins, while allowing users to explore advanced efficiency metrics through interactive visualizations.
+
+**Main Research Questions**
+
+- How do **pass attempts** vs. **rush attempts** translate to how many points a team scores?
+- How do **pass attempts** vs. **rush attempts** translate to **wins** in a given season?
+
+**Our Hypothesis**
+
+We predict that more rushing attempts will correspond with more points scored and a higher winning percentage, because when teams are winning they tend to run the ball in an attempt to slow the game down. Likewise, we predict that more pass attempts will correspond with less points scored and a lower winning percentage, because when teams are losing they tend to throw the ball in an attempt to come back quickly.
+
+**Derived Metrics**
+
+- Intended air yards per pass attempt  
+- Winning percentage  
+- Points per pass attempt  
+- Points per rush attempt  
+- Wins per pass attempt  
+- Wins per rush attempt  
+
+
+**Acknowledgments:**  
+All data used in this dashboard was collected from [Pro Football Reference](https://www.pro-football-reference.com).
+This dashboard was developed for educational purposes.
+
+Check out our code on [Github](https://github.com/kobekirk/Kobe_Breckin/blob/main/FinalProject.Rmd)!
+
+
+```{=html}
+<div style="width: 100%; height: 95vh; padding: 10px;">
+  <iframe 
+    src="[https://breckinhadley.shinyapps.io/FinalProject/](https://breckinhadley.shinyapps.io/FinalProject/)" 
+    data-external="1" 
+    width="100%" 
+    height="100%" 
+    style="border: 1px solid #dee2e6; border-radius: 10px;"
+    sandbox="allow-forms allow-scripts allow-same-origin allow-popups"
+    allowfullscreen>
+  </iframe>
+</div>
