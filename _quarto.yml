@@ -8,7 +8,6 @@ website:
    left:
      - href: index.qmd
        text: Home
-     - NFL_Offense.qmd
      - ECON_Paper.qmd
      - Mini_Project1.qmd
      - Mapping.qmd
