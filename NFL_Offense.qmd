@@ -1,5 +1,5 @@
 ---
-title: "NFL Team Metrics Dashboard"
+title: "NFL Offensive Strategy Effectiveness"
 ---
 
 ---
@@ -94,10 +94,10 @@ We predict that more rushing attempts will correspond with more points scored an
 All data used in this dashboard was collected from [Pro Football Reference](https://www.pro-football-reference.com).
 This dashboard was developed for educational purposes.
 
-Check out our code on [Github](https://github.com/kobekirk/Kobe_Breckin/blob/main/FinalProject.Rmd)!
+Check out th code on [Github](https://github.com/kobekirk/Kobe_Breckin/blob/main/FinalProject.Rmd)!
 
+If the window below is not working use this [Link](https://breckinhadley.shinyapps.io/FinalProject/#section-about)
 
-```{=html}
 ```{=html}
 <div style="width: 100%; height: 900px; overflow: hidden; border-radius: 12px; border: 1px solid #dee2e6; box-shadow: 0 8px 24px rgba(0,0,0,0.1);">
   <iframe 
@@ -110,3 +110,5 @@ Check out our code on [Github](https://github.com/kobekirk/Kobe_Breckin/blob/mai
     title="NFL Shiny Dashboard">
   </iframe>
 </div>
+```
+
